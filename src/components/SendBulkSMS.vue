@@ -1,10 +1,10 @@
 <template>
-  <!-- <form @submit="onSubmit" method="POST"> -->
-  <form
+  <!-- <form
     action="https://sms-magician-backend-keanq.run.goorm.io/sms/bulk"
     method="POST"
     enctype="multipart/form-data"
-  >
+  > -->
+  <form @submit="onSubmit" method="POST">
     <div>
       <label>보내시는 분</label>
       <input type="text" v-model="sender" name="sender" />
@@ -16,13 +16,7 @@
     <div>
       <label
         >File
-        <input
-          type="file"
-          id="file"
-          name="file"
-          ref="file"
-          @change="handleFileUpload()"
-        />
+        <input type="file" id="file" ref="file" @change="handleFileUpload()" />
       </label>
     </div>
     <button type="submit">보내기</button>
@@ -30,6 +24,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "SendSMS",
   data() {
@@ -72,44 +68,40 @@ export default {
       formData.append("sender", this.sender);
       formData.append("content", this.content);
 
-      // console.log(formData);
-
-      let testParams =
-        "file=" +
-        this.file +
-        "&" +
-        "sender" +
-        this.sender +
-        "&" +
-        "content" +
-        this.content;
-      console.log(testParams);
-      const params = new URLSearchParams(testParams);
-
       const res = await fetch(
         "https://sms-magician-backend-keanq.run.goorm.io/sms/bulk",
         {
           method: "post",
           mode: "no-cors",
           headers: {
-            "content-type": "multipart/form-data",
+            // if add 'content-type', server can't receive parameters
+            // "content-type": "multipart/form-data",
           },
-          body: params,
+          body: formData,
         }
       );
 
       // // const data = await res.json();
 
       console.log(res.status);
-      // const axios = require("axios");
 
       // axios
-      //   .post("https://sms-magician-backend-keanq.run.goorm.io/sms/bulk", formData, {
-      //     headers: {
-      //       "Content-Type": "multipart/form-data",
-      //     },
-      //     mode: "no-cors",
-      //   })
+      //   .post(
+      //     "https://sms-magician-backend-keanq.run.goorm.io/sms/bulk",
+      //     // "/apiv1/bulk",
+      //     formData,
+      //     {
+      //       headers: {
+      //         "Content-Type": "multipart/form-data",
+      //         "Access-Control-Allow-Origin": "*",
+      //         "Access-Control-Allow-Headers":
+      //           "Origin,Content-Type,X-Requested-With,Accept,Authorization",
+      //         "Access-Control-Allow-Methods":
+      //           "GET, POST, OPTIONS, PUT, PATCH, DELETE",
+      //       },
+      //       mode: "no-cors",
+      //     }
+      //   )
       //   .then(function () {
       //     console.log("SUCCESS!!");
       //   })
