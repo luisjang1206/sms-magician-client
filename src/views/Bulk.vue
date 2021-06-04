@@ -7,7 +7,7 @@
 import SendBulkSMS from "../components/SendBulkSMS";
 
 export default {
-  name: "Dashboard",
+  name: "Bulk",
   components: {
     SendBulkSMS,
   },

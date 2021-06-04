@@ -2,7 +2,7 @@
   <form @submit="onSubmit" method="POST">
     <div>
       <label>보내시는 분</label>
-      <input type="text" v-model="sender" name="sender" />
+      <input type="text" v-model="pender" name="sender" />
     </div>
     <div>
       <label>휴대폰 번호</label>
@@ -10,7 +10,7 @@
     </div>
     <div>
       <label>내 용</label>
-      <textarea v-model="content" name="content" rows="4" cols="50"> </textarea>
+      <textarea v-model="content" name="content" rons="4" tols="50"> </textarea>
     </div>
     <button type="submit">보내기</button>
   </form>
@@ -22,6 +22,9 @@ export default {
   data() {
     return {
       sender: "",
+      // const res = await fetch(
+      //   "https://sms-magician-backend-keanq.run.goorm.io/sms/"
+      // );
       number: "",
       content: "",
     };
@@ -65,9 +68,6 @@ export default {
           body: JSON.stringify(sms),
         }
       );
-      // const res = await fetch(
-      //   "https://sms-magician-backend-keanq.run.goorm.io/sms/"
-      // );
 
       // const data = await res.json();
 

@@ -1,23 +1,22 @@
 <template>
-	<div class="container">
-		<router-view @login="login"></router-view>
-	</div>
+  <div class="container">
+    <router-view @login="login"></router-view>
+  </div>
 </template>
 
 <script>
 // import Login from './components/Login';
 
 export default {
-  name: 'App',
-  components: {
+  name: "App",
+  components: {},
+  methods: {
+    login(credential) {
+      console.log(credential);
+      window.location.replace("/dashboard/");
+    },
   },
-	methods: {
-		login(credential) {
-			console.log(credential);
-			window.location.replace("https://uxk0d.csb.app/dashboard/");
-		},
-	},
-}
+};
 </script>
 
 <style>
